@@ -1,19 +1,33 @@
-def max_heapify(arr,i):
-    l_child = i*2
-    r_child = i*2+1
-    print(arr[l_child],arr[r_child])
-    if l_child <= len(arr) and arr[l_child] > arr[i]:
-        max = l_child
-    else:
-        max = i
-    if r_child <= len(arr) and arr[r_child] > arr[max]:
-        max = r_child
-    print(max,i)
-    if max != i:
-        arr[i],arr[max] = arr[max],arr[i]
-        print(arr,max)
-        max_heapify(arr,max)
+# encoding = 'utf-8'
+def big_endian(arr, start, end):
+    parent = start
+    while True:
+        child = parent * 2 + 1  # lchild
 
-a = [16,4,10,14,7,9,3,2,8,1]
-max_heapify(a,1)
-print(a)
+        if child > end:
+            break
+
+        if child + 1 <= end and arr[child] < arr[child + 1]:
+            child += 1
+
+        if arr[parent] < arr[child]:
+            arr[parent], arr[child] = arr[child], arr[parent]
+            parent = child
+        else:
+            break
+
+
+def heap_sort(arr):
+    # build a max heap
+    for start in range(len(arr) // 2 - 1, -1, -1):
+        big_endian(arr, start, len(arr) - 1)
+
+    for end in range(len(arr) - 1, 0, -1):
+        arr[0], arr[end] = arr[end], arr[0]
+        big_endian(arr, 0, end - 1)
+
+    return arr
+
+
+l = [16, 4, 10, 14, 7, 9, 3, 2, 8, 1]
+print(heap_sort(l))

@@ -1,4 +1,4 @@
-# indexing start from 1
+# indexing starts from 1
 
 class Heap:
     def __init__(self, l=[]):
@@ -31,7 +31,7 @@ class Heap:
         l = self.lchild(i)
         r = self.rchild(i)
 
-        if l <= self.__len__() and self[l] > self[i]:
+        if l <= len(self) and self[l] > self[i]:
             max = l
         else:
             max = i
@@ -42,10 +42,6 @@ class Heap:
             self[i], self[max] = self[max], self[i]
             # print(heap, max)
             self.max_heapify(max)
-
-    def build_max_heap(self):
-        for i in range(len(self) // 2, 0, -1):
-            self.max_heapify(i)
 
     def heap_sort(self):
         for i in range(len(self) // 2, 0, -1):
