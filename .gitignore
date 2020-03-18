@@ -1,0 +1,7 @@
+.idea
+venv
+*.pyc
+.env.example
+.DS_Store
+default_package
+.pytest_cache
